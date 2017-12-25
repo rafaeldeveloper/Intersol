@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  agency: one
+  conta: MyString
+  limite: 9.99
+
+two:
+  agency: two
+  conta: MyString
+  limite: 9.99

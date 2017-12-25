@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  conta: one
+  valor: 9.99
+  tipo: MyString
+  usuario: one
+
+two:
+  conta: two
+  valor: 9.99
+  tipo: MyString
+  usuario: two
