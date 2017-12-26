@@ -13,6 +13,13 @@ class Transaction < ApplicationRecord
     if self.tipo == "Saque"
       account.increment!(:balance,self.valor)  
     end    
+    if self.tipo == "Transferência"
+      destinary = Account.find(self.recipient)
+      account.increment!(:balance,self.valor)  
+      destinary.decrement!(:balance,self.valor)
+      destinary.save
+    end    
+
     account.save
   end
 

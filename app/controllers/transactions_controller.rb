@@ -40,7 +40,7 @@ class TransactionsController < ApplicationController
         return redirect_to transactions_path
     end
     
-    doneTransaction = account.beginTransaction(@transaction.tipo,@transaction.valor)
+    doneTransaction = account.beginTransaction(@transaction.tipo,@transaction.valor,@transaction.recipient)
     unless doneTransaction
       flash[:error] = account.errors.first
       return redirect_to transactions_path
@@ -91,6 +91,6 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:accounts_id, :valor, :tipo, :usuario_id)
+      params.require(:transaction).permit(:accounts_id, :valor, :tipo, :usuario_id,:recipient)
     end
 end

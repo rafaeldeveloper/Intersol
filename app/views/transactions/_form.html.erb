@@ -33,10 +33,18 @@
   <div class="form-group">
     <%= f.label :tipo, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%=   f.input :tipo,  :as => :select,      :collection => ['Saque','Deposito','Estorno','Transferência'], :input_html => { :class => 'form-control', :required => true} , label: false %>
+      <%=   f.input :tipo,  :as => :select,      :collection => ['Saque','Deposito','Transferência'], :input_html => { :class => 'form-control', :required => true} , label: false %>
     </div>
     <%=f.error_span(:tipo) %>
   </div>
+  <div class="form-group">
+    <%= f.label :recipient, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+       <%= f.collection_select(:recipient, @accounts, :id, :conta,{:prompt=>"Em caso de transferência selecione aqui a conta de destino"},{ :class => 'form-control'}) %>
+
+    </div>
+    <%=f.error_span(:accounts_id) %>
+  </div>  
   <div class="form-group">
     <%= f.label :usuario_id, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
