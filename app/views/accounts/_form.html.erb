@@ -18,21 +18,22 @@
   <div class="form-group">
     <%= f.label :agency_id, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :agency_id, :class => 'form-control' %>
+    <%= f.collection_select(:agency_id, @agencies, :id, :endereco,{:prompt=>true},{ :class => 'form-control', :required => true }) %>
     </div>
+
     <%=f.error_span(:agency_id) %>
   </div>
   <div class="form-group">
     <%= f.label :conta, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :conta, :class => 'form-control' %>
+      <%= f.text_field :conta, :class => 'form-control', :required => true %>
     </div>
     <%=f.error_span(:conta) %>
   </div>
   <div class="form-group">
     <%= f.label :limite, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :limite, :class => 'form-control' %>
+      <%= f.text_field :limite, :class => 'form-control', :required => true %>
     </div>
     <%=f.error_span(:limite) %>
   </div>

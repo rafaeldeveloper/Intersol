@@ -11,21 +11,43 @@ class TransactionsController < ApplicationController
   # GET /transactions/1
   # GET /transactions/1.json
   def show
+    @usuarios = Usuario.all
+    @accounts = Account.all    
   end
 
   # GET /transactions/new
   def new
     @transaction = Transaction.new
+    @usuarios = Usuario.all
+    @accounts = Account.all
+
   end
 
   # GET /transactions/1/edit
   def edit
+    @usuarios = Usuario.all
+    @accounts = Account.all    
+
   end
 
   # POST /transactions
   # POST /transactions.json
   def create
     @transaction = Transaction.new(transaction_params)
+    account = Account.find(@transaction.accounts_id)
+
+    if account.limite < @transaction.valor
+        flash[:error] = "Valor da Transação excede ao limite da conta"
+        return redirect_to transactions_path
+    end
+    
+    doneTransaction = account.beginTransaction(@transaction.tipo,@transaction.valor)
+    unless doneTransaction
+      flash[:error] = account.errors.first
+      return redirect_to transactions_path
+    end
+
+
 
     respond_to do |format|
       if @transaction.save
@@ -52,16 +74,6 @@ class TransactionsController < ApplicationController
     end
   end
 
-  # DELETE /transactions/1
-  # DELETE /transactions/1.json
-  def destroy
-    @transaction.destroy
-    respond_to do |format|
-      format.html { redirect_to transactions_url, notice: 'Transaction was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_transaction
@@ -70,6 +82,6 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:conta_id, :valor, :tipo, :usuario_id)
+      params.require(:transaction).permit(:accounts_id, :valor, :tipo, :usuario_id)
     end
 end

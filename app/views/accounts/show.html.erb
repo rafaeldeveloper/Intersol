@@ -10,6 +10,8 @@
   <dd><%= @account.conta %></dd>
   <dt><strong><%= model_class.human_attribute_name(:limite) %>:</strong></dt>
   <dd><%= @account.limite %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:balance) %>:</strong></dt>
+  <dd><%= @account.balance %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

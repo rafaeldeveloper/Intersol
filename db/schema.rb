@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171225060658) do
+ActiveRecord::Schema.define(version: 20171226125212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20171225060658) do
     t.decimal  "limite"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal  "balance"
     t.index ["agency_id"], name: "index_accounts_on_agency_id", using: :btree
   end
 
@@ -59,13 +60,13 @@ ActiveRecord::Schema.define(version: 20171225060658) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.integer  "conta_id"
+    t.integer  "accounts_id"
     t.decimal  "valor"
     t.string   "tipo"
     t.integer  "usuario_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["conta_id"], name: "index_transactions_on_conta_id", using: :btree
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["accounts_id"], name: "index_transactions_on_accounts_id", using: :btree
     t.index ["usuario_id"], name: "index_transactions_on_usuario_id", using: :btree
   end
 
@@ -90,6 +91,6 @@ ActiveRecord::Schema.define(version: 20171225060658) do
   add_foreign_key "conta", "agencia", column: "agencia_id"
   add_foreign_key "transacaos", "conta", column: "conta_id"
   add_foreign_key "transacaos", "usuarios"
-  add_foreign_key "transactions", "conta", column: "conta_id"
+  add_foreign_key "transactions", "accounts", column: "accounts_id"
   add_foreign_key "transactions", "usuarios"
 end

@@ -10,6 +10,7 @@
       <th><%= model_class.human_attribute_name(:conta) %></th>
       <th><%= model_class.human_attribute_name(:limite) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= model_class.human_attribute_name(:balance) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -21,6 +22,8 @@
         <td><%= account.conta %></td>
         <td><%= account.limite %></td>
         <td><%=l account.created_at %></td>
+        <td><%= account.balance %></td>
+
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_account_path(account), :class => 'btn btn-default btn-xs' %>

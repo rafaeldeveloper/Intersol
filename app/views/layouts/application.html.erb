@@ -9,12 +9,12 @@
   </head>
 
   <body>
- 		<p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
       <% if current_usuario %>
         <%= render :partial => 'home/nav' %>
-      <% end %>
+      <% end %>  
     <div class="container">
+      <br/>
+      <%= bootstrap_flash %>     
     	<%= yield %>
     </div>
 

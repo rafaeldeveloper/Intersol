@@ -1,0 +1,66 @@
+class UsuariosController < ApplicationController
+  before_action :set_usuario, only: [:show, :edit, :update, :destroy]
+	def index
+    @usuarios = Usuario.all
+	end
+
+  def new
+      @usuario = Usuario.new
+  end
+
+  def show
+  end
+
+  def edit
+  end
+
+
+	def create
+	    @usuario = Usuario.new(usuario_params)
+
+	    respond_to do |format|
+	      if @usuario.save
+	        format.html { redirect_to usuarios_path, notice: 'Usuario was successfully created.' }
+	      else
+	        format.html { render :new }
+	        format.json { render json: @usuario.errors, status: :unprocessable_entity }
+	      end
+	    end
+	  end
+
+	  # PATCH/PUT /agencies/1
+	  # PATCH/PUT /agencies/1.json
+	  def update
+	    respond_to do |format|
+	      if @usuario.update(usuario_params)
+	        format.html { redirect_to usuarios_path, notice: 'Agency was successfully updated.' }
+	        format.json { render :show, status: :ok, location: @usuario }
+	      else
+	        format.html { render :edit }
+	        format.json { render json: @usuario.errors, status: :unprocessable_entity }
+	      end
+	    end
+	  end
+
+	  # DELETE /agencies/1
+	  # DELETE /agencies/1.json
+	  def destroy
+	    @usuario.destroy
+	    respond_to do |format|
+	      format.html { redirect_to usuarios_url, notice: 'Agency was successfully destroyed.' }
+	      format.json { head :no_content }
+	    end
+	  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_usuario
+      @usuario = Usuario.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def usuario_params
+      params.require(:usuario).permit(:email, :password)
+    end
+
+end
