@@ -6,12 +6,12 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:accounts_id) %></th>
+      <th>Conta</th>
       <th><%= model_class.human_attribute_name(:valor) %></th>
       <th><%= model_class.human_attribute_name(:tipo) %></th>
-      <th><%= model_class.human_attribute_name(:usuario_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th>Usuário</th>
+      <th>Data da Transação</th>
+      <th><%=t '.acoes', :default => "Ações" %></th>
     </tr>
   </thead>
   <tbody>
