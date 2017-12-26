@@ -61,6 +61,7 @@ class TransactionsController < ApplicationController
 
   def destroy
     @transaction.rollBack()
+    @transaction.destroy
     respond_to do |format|
         format.html { redirect_to transactions_url, notice: 'Transação estornada com sucesso!' }
         format.json { head :no_content }
