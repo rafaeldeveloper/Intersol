@@ -35,7 +35,6 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new(transaction_params)
     account = Account.find(@transaction.accounts_id)
-
     if account.limite < @transaction.valor
         flash[:error] = "Valor da Transação excede ao limite da conta"
         return redirect_to transactions_path
@@ -58,6 +57,15 @@ class TransactionsController < ApplicationController
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def destroy
+    @transaction.rollBack()
+    respond_to do |format|
+        format.html { redirect_to transactions_url, notice: 'Transação estornada com sucesso!' }
+        format.json { head :no_content }
+      end
+
   end
 
   # PATCH/PUT /transactions/1

@@ -11,6 +11,7 @@
       <th><%= model_class.human_attribute_name(:tipo) %></th>
       <th><%= model_class.human_attribute_name(:usuario_id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
@@ -22,6 +23,14 @@
         <td><%= transaction.tipo %></td>
         <td><%= transaction.usuario_id %></td>
         <td><%=l transaction.created_at %></td>
+        <td>
+        <%= link_to t('.estornar', :default => "Estonar"),
+                      transaction_path(transaction),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Term certeza que deseja estornar essa transação?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+
       </tr>
     <% end %>
   </tbody>
