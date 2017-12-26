@@ -63,9 +63,6 @@ demo:
 
 production:
   database: inter_production
-  username: pguser
-  password: rafa
-  <<: *common
 
 cucumber:
   <<: *test
