@@ -1,5 +1,6 @@
 class AgenciesController < ApplicationController
   before_action :set_agency, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_usuario!
 
   # GET /agencies
   # GET /agencies.json

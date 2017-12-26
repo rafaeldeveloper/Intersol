@@ -4,7 +4,12 @@
         <%= menu_item "Agências", agencies_path %>
         <%= menu_item "Contas", accounts_path %>
         <%= menu_item "Transações", transactions_path %>
-
     <% end %>
+    <%= menu_group pull: :right do %>
+        <% if current_usuario %>
+					 <li> <%= link_to('Logout', destroy_usuario_session_path, method: :delete) %>  </li>     
+        <% end %>
+    <% end %>
+
 <% end %>
 
