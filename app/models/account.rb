@@ -14,7 +14,7 @@ class Account < ApplicationRecord
       self.increment!(:balance,valor)  
     end
     if tipo == "Saque"
-     if self.balance < valor
+     if self.balance.nil? || self.balance < valor 
         self.errors.add("Falha ao Criar Transação", "Saldo Não Disponivel")
         return false
      else   
