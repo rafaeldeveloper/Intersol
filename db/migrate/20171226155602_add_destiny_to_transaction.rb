@@ -3,3 +3,5 @@ class AddDestinyToTransaction < ActiveRecord::Migration[5.0]
 		add_column :transactions, :recipient, :integer
  end
 end
+
+
